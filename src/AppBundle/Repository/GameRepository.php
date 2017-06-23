@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\ORMInvalidArgumentException;
 
 /**
  * GameRepository
@@ -12,4 +13,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class GameRepository extends EntityRepository
 {
+    /**
+     * Gets the game objects for a given winner
+     * @throws ORMInvalidArgumentException if the argument is not valid
+     * @param $who string should be User, Computer, or Tie
+     * @return array of Game objects
+     */
+    public function getWinners($who)
+    {
+        if($who == 'Computer' || $who == 'User' || $who == 'Tie') {
+            return $this->findBy(array('winner' => $who));
+        } else {
+            throw new ORMInvalidArgumentException("Value must be Computer, User, or Tie");
+        }
+    }
+
+    public function getUserMove($move)
+    {
+        if($move == 'Rock' || $move == 'Paper' || $move == 'Scissors' || $move == 'Spock' || $move == 'Lizard') {
+            return $this->findBy(array('user' => $move));
+        } else {
+            throw new ORMInvalidArgumentException("Value must be Rock, Paper, Scissors, Spock, or Lizard");
+        }
+    }
+
+    public function getComputerMove($move)
+    {
+        if($move == 'Rock' || $move == 'Paper' || $move == 'Scissors' || $move == 'Spock' || $move == 'Lizard') {
+            return $this->findBy(array('computer' => $move));
+        } else {
+            throw new ORMInvalidArgumentException("Value must be Rock, Paper, Scissors, Spock, or Lizard");
+        }
+    }
 }

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row row-centered">
+            <div>User won: {{ userwins }}</div>
+            <div>Computer won: {{ computerwins }}</div>
+            <div>Tie games: {{ ties }}</div>
+        </div>
+        <div class="row row-centered">
+            <div class="col-xs-12 col-sm-6 col-centered">
+            <table class="table table-bordered table-striped text-center">
+                <tr>
+                    <th></th>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Computer</th>
+                </tr>
+                <tr>
+                    <th>Rock</th>
+                    <td>{{ userRock }}</td>
+                    <td>{{ computerRock }}</td>
+                </tr>
+                <tr>
+                    <th>Paper</th>
+                    <td>{{ userPaper }}</td>
+                    <td>{{ computerPaper }}</td>
+                </tr>
+                <tr>
+                    <th>Scissors</th>
+                    <td>{{ userScissors }}</td>
+                    <td>{{ computerScissors }}</td>
+                </tr>
+                <tr>
+                    <th>Spock</th>
+                    <td>{{ userSpock }}</td>
+                    <td>{{ computerSpock }}</td>
+                </tr>
+                <tr>
+                    <th>Lizard</th>
+                    <td>{{ userLizard }}</td>
+                    <td>{{ computerLizard }}</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
