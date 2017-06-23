@@ -4,6 +4,8 @@ rpssl
 This is a game of Rock, Paper, Scissors, Spock, Lizard.
 It is based on http://www.samkass.com/theories/RPSSL.html
 
+A demo can be found at http://www.matuck.com
+
 Installation
 ------------
 ~~~code
