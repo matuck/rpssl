@@ -17,7 +17,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         //Build form for user to make his choice
-        $defaultData = array('move' => 'Rock');
+        $defaultData = array('move' => Game::getRandomMove());
         $builder = $this->createFormBuilder($defaultData);
         $builder->add('move', ChoiceType::class, array(
             'choices' => Game::$moves,
