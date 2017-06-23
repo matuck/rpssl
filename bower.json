@@ -1,0 +1,22 @@
+{
+  "name": "rpssl",
+  "homepage": "https://github.com/matuck/rpssl",
+  "authors": [
+    "Mitch Tuck <matuck@matuck.com>"
+  ],
+  "description": "Rock Paper Scissors Sock Lizard",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
