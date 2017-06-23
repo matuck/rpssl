@@ -42,7 +42,39 @@ class Game
      */
     private $winner;
 
+    /**
+     * @var array of valid moves
+     */
+    public static $moves = array(
+        'Rock' => 'Rock',
+        'Paper' => 'Paper',
+        'Scissors' => 'Scissors',
+        'Spock' => 'Spock',
+        'Lizard' => 'Lizard'
+    );
 
+    private $messages = array(
+        'Rock' => array(
+            'Scissors' => 'Rock crushes scissors',
+            'Lizard'   => 'Rock crushes lizard'
+        ),
+        'Paper' => array(
+            'Rock'  => 'Paper covers rock',
+            'Spock' => 'Paper disproves Spock'
+        ),
+        'Scissors' => array(
+            'Paper'  => 'Scissors cut paper',
+            'Lizard' => 'Scissors decapitate lizard'
+        ),
+        'Lizard' => array(
+            'Spock' => 'Lizard poisons Spock',
+            'Paper' => 'Lizard eats paper'
+        ),
+        'Spock' => array(
+            'Scissors' => 'Spock smashes scissors',
+            'Rock' => 'Spock vaporizes rock'
+        )
+    );
     /**
      * Get id
      *
@@ -62,7 +94,7 @@ class Game
     public function setUser($user)
     {
         $this->user = $user;
-
+        $this->setWinner();
         return $this;
     }
 
@@ -85,7 +117,7 @@ class Game
     public function setComputer($computer)
     {
         $this->computer = $computer;
-
+        $this->setWinner();
         return $this;
     }
 
@@ -102,12 +134,21 @@ class Game
     /**
      * Set winner
      *
-     * @param string $winner
      * @return Game
      */
-    public function setWinner($winner)
+    public function setWinner()
     {
-        $this->winner = $winner;
+        if($this->user != null && $this->computer != null) {
+            if(isset($this->messages[$this->user][$this->computer])) {
+                $this->winner = 'User';
+            } elseif (isset($this->messages[$this->computer][$this->user])) {
+                $this->winner = 'Computer';
+            } else {
+                $this->winner = 'Tie';
+            }
+        } else {
+            $this->winner = null;
+        }
 
         return $this;
     }
@@ -120,5 +161,28 @@ class Game
     public function getWinner()
     {
         return $this->winner;
+    }
+
+
+    public function getWinMessage()
+    {
+        $message = "";
+        if($this->winner == 'User') {
+            $message = $this->messages[$this->user][$this->computer];
+        } elseif ($this->winner == 'Computer') {
+            $message = $this->messages[$this->computer][$this->user];
+        } else {
+            $message = 'Tie Game!';
+        }
+        return $message;
+    }
+    /**
+     * Gets a random move
+     *
+     * @return string "Rock", "Paper", "Scissors", "Spock", "Lizard"
+     */
+    public static function getRandomMove()
+    {
+        return array_rand(Game::$moves);
     }
 }

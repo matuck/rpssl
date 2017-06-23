@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row row-centered">
+            <div>You Chose: {{ game.user }}</div>
+            <div>Computer Chose: {{ game.computer }}</div>
+            <div>{{ winmessage }}</div>
+            {% if game.winner == 'User' %}
+                <div>You Win</div>
+            {% endif %}
+            {% if game.winner == 'Computer' %}
+                <div>Computer Wins</div>
+            {% endif %}
+            <div>
+                <a href="/">Play Again!</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
