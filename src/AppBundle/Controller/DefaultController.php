@@ -54,7 +54,7 @@ class DefaultController extends Controller
     /**
      * @Route("/statistics", name="statistics")
      */
-    public function statsAction(Request $request)
+    public function statsAction()
     {
         /** @var \AppBundle\Repository\GameRepository  $gameRepo */
         $gameRepo = $this->getDoctrine()->getRepository('AppBundle:Game');
@@ -73,5 +73,12 @@ class DefaultController extends Controller
             'computerSpock' => count($gameRepo->getComputerMove('Spock')),
             'computerLizard' => count($gameRepo->getComputerMove('Lizard')),
         ));
+    }
+
+    /**
+     * @Route("/rules", name="rules")
+     */
+    public function rulesAction() {
+        return $this->render('default/rules.html.twig');
     }
 }
